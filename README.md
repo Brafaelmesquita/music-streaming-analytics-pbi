@@ -11,15 +11,24 @@ This project provides a comprehensive analysis of user engagement, subscription 
 
 ## 📂 Project Structure
 - `data/`: Contains the raw CSV dataset.
+- `notebooks/`: Jupyter Notebooks with the Python ETL process.
 - `pbix/`: Power BI project files.
 - `assets/`: Documentation, icons, and images.
 - `README.md`: Project documentation.
 
 ## 🛠️ Tool Stack
+- **Data Processing:** Python (Pandas) inside Jupyter Notebooks
+- **Environment Management:** Conda
 - **Data Visualization:** Power BI Desktop
-- **Data Transformation:** Power Query (M)
 - **Calculations:** DAX (Data Analysis Expressions)
 - **Documentation:** Markdown / GitHub
+
+## ⚙️ ETL Process (Python)
+Before importing to Power BI, the data underwent a cleaning process using Python to ensure quality:
+- **Date Standardization:** Converted strings to `datetime` objects.
+- **Boolean Mapping:** Transformed "Yes/No" columns into `1/0` for mathematical efficiency.
+- **Feature Engineering:** Calculated user **Tenure** (months/years) based on a reference data (2025-12-31).
+- **Data Quality:** Verified and handled outliers in listening habits.
 
 ---
 ## 🚀 How to View the Project
