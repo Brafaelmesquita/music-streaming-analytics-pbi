@@ -41,6 +41,13 @@ To enable advanced temporal analysis, a dedicated **dCalendar** table was implem
 - **Dynamic Range:** Spans from the earliest `signup_date` to the reference date (2025-12-31).
 - **Attributes:** Includes Year, Month Name, Month Number, Quarter, and Year-Month strings.
 - **Key Feature:** Established a 1:N relationship with the fact table, allowing for Time Intelligence calculations (e.g., Year-over-Year growth, Monthly Trends).
+
+### 📈 Conversion Insights Dashboard
+The dashboard focuses on identifying the **Ideal Customer Profile (ICP)** through:
+- **Geographic Performance:** Mapping conversion rates across different countries.
+- **Musical Affinity:** Correlating music genres with subscription likelihood.
+- **Age Demographics:** Analyzing the impact of user age on ad-to-premium conversion.
+- **Device Affinity:** Analyzing conversion rates across Smartphone, Desktop, Smart Speakers, and Tablets to identify platform-specific friction points.
 ---
 ## 🚀 How to View the Project
 1. Clone the repository.
