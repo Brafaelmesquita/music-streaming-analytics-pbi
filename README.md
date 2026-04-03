@@ -44,19 +44,15 @@ To drive business insights, I developed the following measures in Power BI:
 * **Ad Conversion Rate:** Evaluates the effectiveness of advertisements in driving premium upgrades.
     * **Formula:** `DIVIDE(SUM(ad_conversion_to_subscription), SUM(ad_interaction), 0)`
 
-* **Activity Index:** Measures the health of the user base by calculating the inverse of the 3-month churn rate. A higher index indicates better retention.
-    * **Formula:** ```dax
-    1 - DIVIDE(
-    CALCULATE(COUNT(user_id), inactive_3_months_flag = 1),
-    COUNT(user_id)
-    )
-    ```
+* **Activity Index:** Measures the health of the user base by calculating the inverse of the 3-month churn rate.
+    * **Formula:** `1 - DIVIDE(CALCULATE(COUNT(user_id), inactive_3_months_flag = 1), COUNT(user_id))`
 
-* **Average Tenure (Months):** Represents the expected lifecycle of a user on the platform. This serves as a primary indicator for retention and long-term user value.
+* **Average Tenure (Months):** Represents the expected lifecycle of a user on the platform.
     * **Formula:** `AVERAGE(tenure_months)`
 
 * **Music Satisfaction Score (MSS):** Tracks the average user sentiment regarding music recommendations.
     * **Formula:** `AVERAGE(music_suggestion_rating_1_to_5)`
+
 ## ⚙️ ETL Process (Python)
 Before importing to Power BI, the data underwent a cleaning process to ensure analytical quality:
 - **Date Standardization:** Converted strings to `datetime` objects for time-series consistency.
