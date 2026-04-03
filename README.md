@@ -1,13 +1,14 @@
 # Spotify User Behavior Analysis & Dashboard
 
 ## 📌 Project Overview
-This project provides a comprehensive analysis of user engagement, subscription trends, and feature preferences for a music streaming platform. Using a dataset of 50,000 synthetic user records, I developed an interactive Power BI dashboard to help stakeholders identify churn risks and optimization opportunities.
+This project provides a comprehensive analysis of user engagement, subscription trends, and feature preferences for a music streaming platform. Using a dataset of **50,000 synthetic user records**, I developed an interactive Power BI dashboard to help stakeholders identify churn risks and optimization opportunities.
 
 ## 🎯 Key Business Questions
 - **Conversion Efficiency:** What is the specific user profile (Age/Country/Device/Most Liked Feature) that converts most effectively from ads to subscriptions?
 - **Feature-Led Growth:** Which app features (e.g., Discover Weekly, AI DJ) are most strongly correlated with successful user upgrades?
-- **User Retention & Health:** How do engagement levels (Activity Index) and music satisfaction (MSS) vary across demographic segments?
-- **Monetization Strategy:** What is the estimated long-term value (LTV) of a converted user and how is the subscription mix distributed?
+- **User Retention & Health:** How do engagement levels (User Retention Rate) and music satisfaction (MSS) vary across demographic segments?
+- **Monetization Strategy:** What is the Average Tenure (in Months) of a converted user and how is the subscription mix distributed?
+
 
 ## 📂 Project Structure
 - `data/`: Contains the raw CSV dataset.
@@ -37,6 +38,25 @@ The analysis is based on a dataset of 50,000 records. Below are the definitions 
 * **`ad_interaction`**: Indicates if the user interacted with ads during their session.
 * **`ad_conversion_to_subscription`**: Indicates if an ad interaction directly led to a paid subscription upgrade.
 
+## 🧮 Key Metrics & DAX Calculations
+To drive business insights, I developed the following measures in Power BI:
+
+* **Ad Conversion Rate:** Evaluates the effectiveness of advertisements in driving premium upgrades.
+    * **Formula:** `DIVIDE(SUM(ad_conversion_to_subscription), SUM(ad_interaction), 0)`
+
+* **Activity Index:** Measures the health of the user base by calculating the inverse of the 3-month churn rate. A higher index indicates better retention.
+    * **Formula:** ```dax
+    1 - DIVIDE(
+    CALCULATE(COUNT(user_id), inactive_3_months_flag = 1),
+    COUNT(user_id)
+    )
+    ```
+
+* **Average Tenure (Months):** Represents the expected lifecycle of a user on the platform. This serves as a primary indicator for retention and long-term user value.
+    * **Formula:** `AVERAGE(tenure_months)`
+
+* **Music Satisfaction Score (MSS):** Tracks the average user sentiment regarding music recommendations.
+    * **Formula:** `AVERAGE(music_suggestion_rating_1_to_5)`
 ## ⚙️ ETL Process (Python)
 Before importing to Power BI, the data underwent a cleaning process to ensure analytical quality:
 - **Date Standardization:** Converted strings to `datetime` objects for time-series consistency.
@@ -64,18 +84,16 @@ The dashboard focuses on identifying the **Ideal Customer Profile (ICP)** throug
 - **Device Affinity:** Analyzing conversion rates across Smartphone, Desktop, Smart Speakers, and Tablets to identify platform-specific friction points.
 
 ## 💡 Main Findings & Business Insights
-- **Target Audience:** The **35-44 age group** shows the highest conversion peak (~26%), suggesting that premium ads are highly effective with a mature, established audience.
-- **Conversion Drivers:** Personalization features (AI DJ and Discover Weekly) are the strongest hooks for upgrading, outperforming utility features like "Offline Mode" in conversion probability.
-- **Market Leaders:** Emerging markets like **Indonesia** and **Mexico** present higher ad-receptivity, offering a strategic opportunity for aggressive growth campaigns.
-- **Platform Consistency:** **Mobile** leads in volume, but the conversion gap between Mobile and **Desktop/Tablet** is minimal (~1%), indicating a high-quality cross-platform user experience.
-
+* **Target Audience:** The **35-44 age group** shows the highest conversion peak (~25%), suggesting that premium ads are highly effective with a mature audience.
+* **Conversion Drivers:** Personalization features (**AI DJ** and **Discover Weekly**) are the strongest hooks for upgrading.
+* **Market Leaders:** Emerging markets like **Indonesia**, **India**, and **Mexico** present higher ad-receptivity.
+* **Platform Consistency:** **Mobile** leads in volume, but the conversion gap between Mobile and **Desktop/Tablet** is minimal (~1%).
 
 ---
 
 ## 🚀 How to View the Project
 1. Clone the repository.
 2. Open the `.pbix` file in **Power BI Desktop**.
-3. *[Optional]* Check the `/notebooks` folder to see the data transformation logic.
 
 ---
 
