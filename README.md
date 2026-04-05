@@ -1,5 +1,7 @@
 # Spotify User Behavior Analysis & Dashboard
 
+![Dashboard Preview](./assets/dashboard_spotify_user_behavior.png)
+
 ## 📌 Project Overview
 This project provides a comprehensive analysis of user engagement, subscription trends, and feature preferences for a music streaming platform. Using a dataset of **50,000 synthetic user records**, I developed an interactive Power BI dashboard to help stakeholders identify churn risks and optimization opportunities.
 
